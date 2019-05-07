@@ -2,15 +2,17 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
 <div class="center-on-page">  
-<h1>Weather in a City</h1>
+<h1>Sleep Analysis App</h1>
+
 
 <form class="form-inline" method="POST" action="{{ url_for('result') }}">
-   <div class="select">
-    <select name="comp_select" class="selectpicker form-control">
-    {% for o in data %}
-     <option value="{{ o.name }}">{{ o.name }}</option>
-    {% endfor %}
-    </select>
-   </div>
-    <button type="submit" class="btn">Go</button>
+
+        <label for="inputpath">Directory Location:</label>
+
+        <input type="text" id="inputpath" name="inputpath" required
+        minlength="4" maxlength = "200" placeholder = "X:\">
+        <button type="submit" class="btn">Go</button> 
+
+    
 </form>
+
