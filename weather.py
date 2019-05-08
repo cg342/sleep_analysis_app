@@ -14,3 +14,6 @@ def query_api(city):
         print(exc)
         data = None
     return data
+
+def getPath():
+    

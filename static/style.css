@@ -71,3 +71,10 @@ button{
 .button:hover{
   color: #f39c12;
 }
+p{
+  display:block;
+  color:#FFFFFF;
+  width: 100%;
+  text-align: left;
+  font-size: 1.25em;
+}
