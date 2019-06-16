@@ -6,8 +6,8 @@ body {
   }
   .center-on-page {
     position: absolute;
-    top:0;
-    left:0;
+    top:40%;
+    left:50%;
     transform: translate(-50%,-50%);
     
   }
@@ -28,18 +28,16 @@ body {
     font-size: 1.25em;
     
 }
-input{
-  appearance: none;
-  outline: 0;
-  box-shadow: none;
-  border: 0 !important;
-  width: 400px;
-  height: 40px;
-  margin: 0;
-  margin-top: 20px;
-  text-align: left;
-  border-radius: .25em;
-  font-size: 1.1em;
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }
 
 ::placeholder {
