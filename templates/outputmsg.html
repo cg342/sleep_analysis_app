@@ -9,4 +9,9 @@
     <input name="text" type="text" required
     minlength="2" maxlength = "80" placeholder = "X:\Studies\Subjects">
     <button type="submit" class="btn">Go</button>
+    {% for msg in msglist[1:] %}
+        <p> {{ msg }} </p>
+    {% endfor %}
 </form>
+
+

@@ -7,6 +7,8 @@ import time
 import flask
 import test
 import run
+import glob
+import os
 
 app = flask.Flask(__name__)
 
@@ -38,9 +40,6 @@ app = flask.Flask(__name__)
 # def showresult():
 #     return flask.Response(test.show_result())
 
-
-
-
 @app.route('/')
 def my_form():
     return flask.render_template('my-form.html')
@@ -48,9 +47,34 @@ def my_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     inputpath = flask.request.form['text']
-    result = run.start(inputpath)
-    return result
+    if inputpath[-1] != '/':
+        inputpath += '/'
+    messagelist = run.start(inputpath)
+    path = messagelist[0]
+   
+    if not path:
+        return flask.render_template("outputmsg.html", msglist = messagelist)
+    res = ""
 
+    '''
+    csv_files = glob.glob(path+"*.csv")
+    for f in csv_files:
+        if 'unfilled' not in f:
+            res = os.path.join(os.path.dirname(app.instance_path), f)
+    print "res: " + res
+    return flask.send_file(res, as_attachment=True)
+    '''    
+    try:
+        csv_files = glob.glob(path+"*.csv")
+        for f in csv_files:
+            if 'unfilled' not in f:
+                res = os.path.join(os.path.dirname(app.instance_path), f)
+
+        return flask.send_file(res, as_attachment=True)
+    except Exception as e:
+        return flask.render_template("outputmsg.html", msglist = messagelist)
+
+    # return flask.render_template("outputmsg.html", msglist = messagelist )
 
 
 if __name__=='__main__':

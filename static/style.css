@@ -6,9 +6,10 @@ body {
   }
   .center-on-page {
     position: absolute;
-    top:40%;
-    left: 50%;
+    top:0;
+    left:0;
     transform: translate(-50%,-50%);
+    
   }
   h1 {
     text-align: center;
