@@ -4,12 +4,13 @@
 <div class="center-on-page">  
 <h1>Sleep Analysis App</h1> 
 
-<form method="POST">
+<form method=POST enctype=multipart/form-data action="{{ url_for('my_form_post') }}">
     <label for="file-upload" class="custom-file-upload">
         Upload a file
     </label>
-    <input id="file-upload" type="file"/>
-
+    <input id="file-upload" type=file name=data[] multiple="">
+    <input type="submit" >
+   
 </form>
 
 
