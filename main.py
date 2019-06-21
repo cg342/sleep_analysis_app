@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-from pprint import pprint as pp
 from flask import Flask, flash, redirect, render_template, request, url_for, send_from_directory
-# from weather import query_api
 import subprocess
 import time
 import flask
@@ -11,26 +9,19 @@ import glob
 import os, shutil
 from flask_uploads import UploadSet, configure_uploads, DATA
 
-
 app = flask.Flask(__name__)
-
-
 
 app.config['UPLOADED_CSVS_DEST'] = 'uploads'
 csvs = UploadSet('csvs', DATA)
 configure_uploads(app, csvs)
-'''
-@app.route('/')
-def my_form():
-    return render_template('my-form.html')
-'''
+
 @app.route('/', methods=['GET', 'POST'])
 def my_form_post():
 
     if request.method == 'POST':
         # clean contents of uploads/ folder before each session
         cleanUploadFolder()
-
+        clearLogfile()
         uploaded_files = request.files.getlist('data[]')
         for f in uploaded_files:
             csvs.save(f)
@@ -39,9 +30,14 @@ def my_form_post():
         path = messagelist[0]
 
         if not path:
-            return flask.render_template("outputmsg.html", msglist = messagelist)
-        res = ""
-    
+
+            printerr = []
+            with open('_pre.log_') as f:
+                printerr.append(f.read())
+
+            return flask.render_template("outputmsg.html", msglist = printerr)
+        
+        res = "" # path for output file to download
         try:
             csv_files = glob.glob(path+"*.csv")
             for f in csv_files:
@@ -50,16 +46,16 @@ def my_form_post():
 
             return flask.send_file(res, as_attachment=True)
         except Exception as e:
-            return flask.render_template("outputmsg.html", msglist = messagelist)
 
-        
+            return flask.render_template("outputmsg.html", msglist = messagelist[1:])
+
     return render_template('my-form.html')
 
 def cleanUploadFolder():
         fp = os.path.join(os.path.dirname(app.instance_path), "uploads/")
         
         for file in os.listdir(fp):
-            print file
+
             f_del = (os.path.join(fp, file))
             try:
                 if os.path.isfile(f_del):
@@ -68,6 +64,13 @@ def cleanUploadFolder():
                     shutil.rmtree(f_del)
             except Exception as e:
                 print(e)
+
+def clearLogfile():
+    
+    filename = "_pre.log_"
+    filepath = os.path.join(os.path.dirname(app.instance_path), filename)
+    with open(filepath, 'w') as f:
+        pass
 
 if __name__=='__main__':
     app.run(debug=True)

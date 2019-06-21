@@ -10,6 +10,9 @@ import os
 import time
 import allfunctions as func
 import shutil
+import logging
+
+logging.basicConfig(filename="_pre.log_", level=logging.ERROR)
 
 try:
     # Python 3
@@ -48,6 +51,7 @@ def check8_9(WPSP, ind8, ind9):
 
 def preprocess(inputpath):
 
+    errmsg = []
     csv_files = glob.glob(inputpath+"*.csv")
     # dictionary for the final output
     adict = OrderedDict()
@@ -84,7 +88,8 @@ def preprocess(inputpath):
             try:
                 int(item)
             except:
-                print item
+                errmsg.append(str(item)) 
+                logging.error("\n".join(x for x in errmsg))
                 raise
 
         sleepstate = map(int, sleepstate)
@@ -93,16 +98,16 @@ def preprocess(inputpath):
         ind9 = [i for i, x in enumerate(sleepstate) if x == 9]
 
         if len(ind8) != len(ind9): # file has unequal number of 8 and 9
-            print "Unequal number of 8 and 9 error: \n" + filename + "\n"
-            print "Issue occured in spn: " 
-            print check8_9(WPSP, ind8, ind9)
+            logging.error("Unequal number of 8 and 9 error: " + filename)
+            logging.error("Issue occured in spn: " + str(check8_9(WPSP, ind8, ind9)))
+            #logging.error("\n".join(x for x in errmsg))
             raise 
         else:        
             for a,b in zip(ind8,ind9):
                 if a>b:
-                    print "Unmatching 8 and 9 error: \n" + filename + "\n"
-                    print "Issue occured in spn: "
-                    print check8_9(WPSP, ind8, ind9)
+                    logging.error("Unmatching 8 and 9 error: " + filename)
+                    logging.error("Issue occured in spn: " + str(check8_9(WPSP, ind8, ind9)))
+                    #logging.error("\n".join(x for x in errmsg))
                     raise
 
         for a,b in zip(ind8,ind9):
@@ -126,8 +131,8 @@ def preprocess(inputpath):
 
             if len(unit)<10:
 
-                print "very short sleep stage list, spn of 8 is:\n"
-                print spn + "\n"
+                logging.error("very short sleep stage list, spn of 8 is:" + str(spn))
+                #logging.error("\n".join(x for x in errmsg))
                 raise
             try:
                 if spn < 0:
@@ -171,7 +176,7 @@ def preprocess(inputpath):
                 else:
                     newU = func.getDataValue(unit)
             except:
-                print "out of bound between lights out and lights on"
-                print spn
+                logging.error("out of bound between lights out and lights on" + str(spn))
+                #logging.error("\n".join(x for x in errmsg))
                 raise
-        print filename
+        # print filename

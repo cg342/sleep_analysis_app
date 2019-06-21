@@ -4,14 +4,16 @@
 <div class="center-on-page">  
 <h1>Sleep Analysis App</h1> 
 
-<form method="POST">
-    <label for="inputpath">Directory Location:</label>
-    <input name="text" type="text" required
-    minlength="2" maxlength = "80" placeholder = "X:\Studies\Subjects">
-    <button type="submit" class="btn">Go</button>
-    {% for msg in msglist[1:] %}
-        <p> {{ msg }} </p>
+<form method=POST enctype=multipart/form-data action="{{ url_for('my_form_post') }}">
+    <label for="file-upload" class="custom-file-upload">
+        Upload a file
+    </label>
+    <input id="file-upload" type=file name=data[] multiple="">
+    <input type="submit" >
+    {% for msg in msglist %}
+    <p> {{ msg }} </p>
     {% endfor %}
+
 </form>
 
 
