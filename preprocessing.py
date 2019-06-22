@@ -88,8 +88,7 @@ def preprocess(inputpath):
             try:
                 int(item)
             except:
-                errmsg.append(str(item)) 
-                logging.error("\n".join(x for x in errmsg))
+                logging.error(str(item))
                 raise
 
         sleepstate = map(int, sleepstate)
@@ -132,7 +131,6 @@ def preprocess(inputpath):
             if len(unit)<10:
 
                 logging.error("very short sleep stage list, spn of 8 is:" + str(spn))
-                #logging.error("\n".join(x for x in errmsg))
                 raise
             try:
                 if spn < 0:
@@ -177,6 +175,6 @@ def preprocess(inputpath):
                     newU = func.getDataValue(unit)
             except:
                 logging.error("out of bound between lights out and lights on" + str(spn))
-                #logging.error("\n".join(x for x in errmsg))
+
                 raise
         # print filename

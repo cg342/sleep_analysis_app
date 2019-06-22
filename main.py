@@ -31,10 +31,10 @@ def my_form_post():
 
         if not path:
 
-            printerr = []
+            #printerr = []
             with open('_pre.log_') as f:
-                printerr.append(f.read())
-
+                content = f.readlines()
+            printerr = [x.strip() for x in content] 
             return flask.render_template("outputmsg.html", msglist = printerr)
         
         res = "" # path for output file to download
@@ -71,6 +71,10 @@ def clearLogfile():
     filepath = os.path.join(os.path.dirname(app.instance_path), filename)
     with open(filepath, 'w') as f:
         pass
+
+@app.route('/about', methods=['GET', 'POST'])
+def show_about():
+    return render_template('about.html')
 
 if __name__=='__main__':
     app.run(debug=True)
