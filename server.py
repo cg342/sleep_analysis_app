@@ -16,7 +16,7 @@ csvs = UploadSet('csvs', DATA)
 configure_uploads(app, csvs)
 
 @app.route('/', methods=['GET', 'POST'])
-def my_form_post():
+def index():
 
     if request.method == 'POST':
         # clean contents of uploads/ folder before each session
@@ -31,10 +31,10 @@ def my_form_post():
 
         if not path:
 
-            printerr = []
+            #printerr = []
             with open('_pre.log_') as f:
-                printerr.append(f.read())
-
+                content = f.readlines()
+            printerr = [x.strip() for x in content] 
             return flask.render_template("outputmsg.html", msglist = printerr)
         
         res = "" # path for output file to download
@@ -49,7 +49,7 @@ def my_form_post():
 
             return flask.render_template("outputmsg.html", msglist = messagelist[1:])
 
-    return render_template('my-form.html')
+    return render_template('index.html')
 
 def cleanUploadFolder():
         fp = os.path.join(os.path.dirname(app.instance_path), "uploads/")
@@ -71,6 +71,10 @@ def clearLogfile():
     filepath = os.path.join(os.path.dirname(app.instance_path), filename)
     with open(filepath, 'w') as f:
         pass
+
+@app.route('/about')
+def show_about():
+    return render_template('about.html')
 
 if __name__=='__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
