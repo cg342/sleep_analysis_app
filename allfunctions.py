@@ -71,9 +71,9 @@ def getCount(L):
         elif i==6:
           ctRem+=1
         elif i not in [1,2,3,4,5,6,10,8,9]: # anything that is not 1-6 should be counted as Other
-          if i not in [0,7]:
-            print i
-            print " --> error, other than 0 or 7"
+          #if i not in [0,7]:
+         #   print i
+           # print " --> error, other than 0 or 7"
           ctOther+=1
     l = [ct1, ct2, ct3, ct4, ctWake, ctRem, ctOther]
     return [x/2.0 for x in l]
