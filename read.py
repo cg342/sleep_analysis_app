@@ -63,8 +63,8 @@ def analyze(inputpath):
         if subject not in subject_group:
             subject_group.append(subject)
         else:
-            print "duplicate subject:"
-            print filename
+            # print "duplicate subject:"
+            # print filename
             break
 
         with open(filename, 'r') as f:
