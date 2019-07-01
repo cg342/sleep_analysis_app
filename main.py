@@ -76,5 +76,10 @@ def clearLogfile():
 def show_about():
     return render_template('about.html')
 
+@app.route('/demo')
+def demo():
+    return render_template('demo.html')
+
+
 if __name__=='__main__':
     app.run(debug=True)
