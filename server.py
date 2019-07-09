@@ -48,7 +48,7 @@ def index():
         except Exception as e:
 
             return flask.render_template("outputmsg.html", msglist = messagelist[1:])
-
+        
     return render_template('index.html')
 
 def cleanUploadFolder():
@@ -75,10 +75,11 @@ def clearLogfile():
 @app.route('/about')
 def show_about():
     return render_template('about.html')
-    
+
 @app.route('/demo')
 def demo():
     return render_template('demo.html')
+
 
 
 if __name__=='__main__':
