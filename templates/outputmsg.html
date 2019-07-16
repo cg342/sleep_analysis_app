@@ -1,19 +1,31 @@
 <!doctype html>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/static/ind.css">
 
 <!-- Top container -->
-<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+<div class="w3-bar w3-top  w3-dark-gray w3-large" style="z-index:4">
   <span class="w3-bar-item w3-right">
-    <a href="{{ url_for('index') }}" style="text-decoration: none">BWH Sleep Medicine</a>
+    <a href="https://www.brighamandwomens.org/medicine/sleep-and-circadian-disorders/overview" style="text-decoration: none">BWH Sleep Medicine</a>
   </span>
-  <span class="w3-bar-item w3-left"> 
-        <a href="{{ url_for('show_about') }}" style="text-decoration: none">About</a>
+
+  <span class="w3-bar-item w3-right"> 
+    <a href="{{ url_for('index') }}" style="text-decoration: none">Sleep Analysis</a>
   </span>
+  <span class="w3-bar-item w3-right"> 
+        <a href="http://dsmaccess.partners.org/tasci_merger" style="text-decoration: none">Tasco Merger</a>
+  </span>
+  <span class="w3-bar-item w3-right"> 
+    <a href="http://dsmaccess.partners.org/kdt/" style="text-decoration: none">KDT</a>
+  </span> 
+  <span class="w3-bar-item w3-right"> 
+    <a href="{{ url_for('show_about') }}" style="text-decoration: none">About</a>
+  </span> 
 </div>
+
+
 
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
-<div class="center-on-page">  
+<div class="center-on-page" w3-dark-gray>  
 <h1>Sleep Analysis App</h1> 
 
 <form method=POST enctype=multipart/form-data action="{{ url_for('index') }}">
@@ -25,7 +37,6 @@
     {% for msg in msglist %}
     <p> {{ msg }} <br> </p>
     {% endfor %}
-
 </form>
 
 
