@@ -55,15 +55,16 @@ def cleanUploadFolder():
         fp = os.path.join(os.path.dirname(app.instance_path), "uploads/")
         
         for file in os.listdir(fp):
+            if file != '.gitignore':
+                f_del = (os.path.join(fp, file)) 
 
-            f_del = (os.path.join(fp, file))
-            try:
-                if os.path.isfile(f_del):
-                    os.unlink(f_del)
-                elif os.path.isdir(f_del): 
-                    shutil.rmtree(f_del)
-            except Exception as e:
-                print(e)
+                try:
+                    if os.path.isfile(f_del):
+                        os.unlink(f_del)
+                    elif os.path.isdir(f_del): 
+                        shutil.rmtree(f_del)
+                except Exception as e:
+                    print(e)
 
 def clearLogfile():
     
