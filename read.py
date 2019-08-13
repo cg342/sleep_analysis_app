@@ -12,6 +12,9 @@ import os
 import time
 import allfunctions as func
 import shutil
+import logging
+
+logging.basicConfig(filename="_pre.log_", level=logging.ERROR)
 
 try:
     # Python 3
@@ -76,7 +79,7 @@ def analyze(inputpath):
                     for (k,v) in row.items(): # go over each column name and value 
                         columns[k].append(v)
             except:
-                print("Reading error: " + filename)
+                logging.error("Reading error: " + filename)
                 raise
 
 
@@ -222,8 +225,8 @@ def analyze(inputpath):
             try:
                 lastslpfw = func.SleepStageB4FinalWake(newU)
             except:
-                print "slp_stage_b4_finalwake error: "+filename
-                print spn
+                logging.error("slp_stage_b4_finalwake error: "+filename)
+                logging.error(str(spn))
                 raise
             
             if lastslpfw == None:

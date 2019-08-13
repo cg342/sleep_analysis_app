@@ -65,6 +65,7 @@ def preprocess(inputpath):
 
     for filename in csv_files:
         # read from files
+        logging.error('The following file with issue: ' + filename)
         with open(filename, 'r') as f:
             columns = defaultdict(list)
             # read rows into a dictionary format
