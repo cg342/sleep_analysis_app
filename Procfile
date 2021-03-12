@@ -1,1 +1,1 @@
-web: gunicorn bout-analysis-app.wsgi --log-file -
+web: gunicorn main.wsgi --log-file -
