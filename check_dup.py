@@ -46,7 +46,7 @@ def check_dup(folderpath):
           prev = spn
         else:
           if prev==spn:
-            print "dup!"
-            print x, spn
+            print("dup!")
+            print(x, spn)
           prev = spn
           

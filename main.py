@@ -77,7 +77,7 @@ def clearLogfile():
 def rmlog():
     filepath = os.path.join(os.path.dirname(app.instance_path), "_pre.log_")
     if os.path.exists(filepath):
-        print "here"
+        print("here")
         os.remove(filepath)
 
 @app.route('/about')

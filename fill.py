@@ -40,8 +40,8 @@ def fillgap(folderpath):
             toadd=[cur, ".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."]
             D[x].insert(idx,toadd)
         except:
-          print "exception:"
-          print val
+          print("exception:")
+          print(val)
           raise
         cur += 1
 

@@ -222,8 +222,8 @@ def analyze(inputpath):
             try:
                 lastslpfw = func.SleepStageB4FinalWake(newU)
             except:
-                print "slp_stage_b4_finalwake error: "+filename
-                print spn
+                print("slp_stage_b4_finalwake error: "+filename)
+                print(spn)
                 raise
             
             if lastslpfw == None:
