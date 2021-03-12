@@ -12,8 +12,6 @@ Flask-Uploads==0.2.1
 gunicorn==19.7.1
 idna==2.7
 ipykernel==5.3.4
-ipython==7.21.0
-ipython-genutils==0.2.0
 itsdangerous==0.24
 jedi==0.17.2
 Jinja2==2.10.1
