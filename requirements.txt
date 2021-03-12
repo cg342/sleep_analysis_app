@@ -45,3 +45,4 @@ Werkzeug==1.0.1
 # aaa
 # procfile:
 # web: gunicorn <application-name>.wsgi --log-file -
+# web: gunicorn --bind 0.0.0.0:$PORT flaskapp:main
