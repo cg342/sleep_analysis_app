@@ -1,1 +1,1 @@
-web: gunicorn bout-analysis-app.wsgi
+web: gunicorn main.wsgi
