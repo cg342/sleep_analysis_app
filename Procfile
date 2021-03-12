@@ -1,1 +1,1 @@
-web: gunicorn sleep_analysis_app.wsgi
+web: gunicorn bout-analysis-app.wsgi
