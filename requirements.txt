@@ -41,7 +41,7 @@ pytz==2017.2
 # traitlets==5.0.5
 # urllib3==1.24.2
 # wcwidth==0.2.5
-Werkzeug==1.0.1
+Werkzeug==0.16.0
 # aaa
 # procfile:
 # web: gunicorn <application-name>.wsgi --log-file -
